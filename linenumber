@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+# SPDX-FileCopyrightText: 2025 YOUR_NAME
+# SPDX-License-Identifier: MIT
+
+import sys
+
+for i, line in enumerate(sys.stdin, start=1):
+    print(f"{i} {line.rstrip()}")
+
