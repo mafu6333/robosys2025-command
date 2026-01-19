@@ -1,6 +1,7 @@
 # calcpipe - 標準入力式計算コマンド
 
-![test](https://github.com/あなたのユーザー名/あなたのリポジトリ名/actions/workflows/test.yml/badge.svg)
+![test](https://github.com/mafu6333/robosys2025_command/actions/workflows/test.yml/badge.svg)
+---
 
 ロボットシステム学（robosys2025）の課題として作成した  
 標準入力から与えた数式を1行ずつ計算するコマンド `calcpipe` と、そのテストをまとめたディレクトリです。
@@ -23,7 +24,7 @@
 リポジトリを clone してディレクトリに移動します。
 
 ```bash
-git clone https://github.com/あなたのユーザー名/あなたのリポジトリ名.git
+git clone https://github.com/mafu6333/robosys2025_command.git
 cd calcpipe
 chmod +x calcpipe
 
@@ -46,6 +47,8 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 ```css
 [error] line 2: abc (Syntax error)
 
+---
+
 ## 対応している演算
 
 本コマンドでは、標準入力から与えられた数式に対して以下の演算のみを許可している。
@@ -67,7 +70,6 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 ※ 上記以外の関数呼び出しや変数、Pythonコードは安全性確保のため実行できない。
 
----
 
 ## オプション
 
@@ -93,8 +95,11 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 ```bash
 ./test.bash
 
+---
+
 ## ライセンス
 
 このソフトウェアは BSD 3条項ライセンスのもとで再頒布および使用が可能です。  
 詳細は LICENSE ファイルを参照してください。
 
+© 2026 Fumiyori Manaka
