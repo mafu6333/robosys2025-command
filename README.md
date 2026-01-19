@@ -1,7 +1,10 @@
 # calcpipe - 標準入力式計算コマンド
 
 ![test](https://github.com/mafu6333/robosys2025_command/actions/workflows/test.yml/badge.svg)
+
 ---
+
+## 概要
 
 ロボットシステム学（robosys2025）の課題として作成した  
 標準入力から与えた数式を1行ずつ計算するコマンド `calcpipe` と、そのテストをまとめたディレクトリです。
@@ -21,32 +24,36 @@
 
 ### 1. インストール
 
-リポジトリを clone してディレクトリに移動します。
-
 ```bash
 git clone https://github.com/mafu6333/robosys2025_command.git
 cd calcpipe
 chmod +x calcpipe
+```
 
 ### 2. 実行
 ```bash
 echo "1+2" | ./calcpipe
+```
 
 ### 3. 実行例
 ```bash
 printf "1+2\n3*4\nsqrt(9)\npi*2\n" | ./calcpipe
+```
 
+出力：
+```bash
 3
 12
 3.0
 6.283185307179586
+```
 
+### エラー例：
 ```bash
 printf "1+2\nabc\n3+4\n" | ./calcpipe
 
-```css
 [error] line 2: abc (Syntax error)
-
+```
 ---
 
 ## 対応している演算
@@ -70,6 +77,7 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 ※ 上記以外の関数呼び出しや変数、Pythonコードは安全性確保のため実行できない。
 
+---
 
 ## オプション
 
@@ -94,7 +102,7 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 ```bash
 ./test.bash
-
+```
 ---
 
 ## ライセンス
