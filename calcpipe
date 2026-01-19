@@ -1,0 +1,81 @@
+#!/usr/bin/python3
+# SPDX-FileCopyrightText: 2026 Fumiyori Manaka
+# SPDX-License-Identifier : BSD-3-Clause
+
+
+import sys
+import argparse
+import ast
+import math
+
+# 許可するASTノード（最低限）
+OK_NODES = (
+    ast.Expression, ast.BinOp, ast.UnaryOp,
+    ast.Add, ast.Sub, ast.Mult, ast.Div, ast.Pow,
+    ast.UAdd, ast.USub,
+    ast.Constant, ast.Call, ast.Name
+)
+
+# 許可する関数・定数（必要最小限）
+OK_FUNCS = {"sqrt": math.sqrt}
+OK_NAMES = {"pi": math.pi, "e": math.e}
+
+
+def safe_calc(expr: str):
+    tree = ast.parse(expr, mode="eval")
+
+    for n in ast.walk(tree):
+        if not isinstance(n, OK_NODES):
+            raise ValueError(f"not allowed: {type(n).__name__}")
+
+        # 数字以外の定数は禁止（文字列など）
+        if isinstance(n, ast.Constant) and not isinstance(n.value, (int, float)):
+            raise ValueError("only numbers")
+
+        # 変数名は定数と関数名だけ許可
+        if isinstance(n, ast.Name) and n.id not in OK_NAMES and n.id not in OK_FUNCS:
+            raise ValueError(f"unknown name: {n.id}")
+
+        # 関数呼び出しは sqrt(x) だけ許可（属性呼び出しも禁止）
+        if isinstance(n, ast.Call):
+            if not isinstance(n.func, ast.Name) or n.func.id not in OK_FUNCS:
+                raise ValueError("only sqrt(x) is allowed")
+            if n.keywords:
+                raise ValueError("no keyword args")
+
+    env = dict(OK_NAMES)
+    env.update(OK_FUNCS)
+    return eval(compile(tree, "<stdin>", "eval"), {"__builtins__": {}}, env)
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Evaluate one expression per line from stdin.")
+    ap.add_argument("--fail-fast", action="store_true", help="stop at first error")
+    ap.add_argument("--quiet", action="store_true", help="suppress error messages")
+    args = ap.parse_args()
+
+    had_err = False
+
+    for i, raw in enumerate(sys.stdin, 1):
+        s = raw.strip()
+
+        # 空行とコメントは無視
+        if not s or s.startswith("#"):
+            continue
+
+        try:
+            print(safe_calc(s))
+        except Exception as e:
+            had_err = True
+            if not args.quiet:
+                print(f"[error] line {i}: {s} ({e})", file=sys.stderr)
+            if args.fail_fast:
+                return 1
+
+    return 1 if had_err else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+
