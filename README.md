@@ -1,10 +1,6 @@
 # calcpipe - 標準入力式計算コマンド
 
-<<<<<<< HEAD
-![test](https://github.com/mafu6333/robosys2025_command/actions/workflows/test.yml/badge.svg?branch=main)
-=======
 [![test](https://github.com/mafu6333/robosys2025_command/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/mafu6333/robosys2025_command/actions/workflows/test.yml)
->>>>>>> dev
 
 ---
 
