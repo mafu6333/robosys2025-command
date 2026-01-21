@@ -1,7 +1,11 @@
 name: test
 on:
   push:
+    paths-ignore:
+      - "README.md"
   pull_request:
+    paths-ignore:
+      - "README.md"
 
 jobs:
   test:
