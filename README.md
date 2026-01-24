@@ -96,7 +96,7 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 ## テスト環境/方法
 
-- Ubuntu
+- Ubunt 22.04
 
 以下のテストスクリプトを用いて動作確認を行う。
 
