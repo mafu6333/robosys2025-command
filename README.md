@@ -25,9 +25,9 @@
 ### 1. インストール
 
 ```bash
-git clone https://github.com/mafu6333/robosys2025_command.git
-cd calcpipe
-chmod +x calcpipe
+$ git clone https://github.com/mafu6333/robosys2025_command.git
+$ cd calcpipe
+$ chmod +x calcpipe
 ```
 
 ### 2. 実行
@@ -37,11 +37,10 @@ echo "1+2" | ./calcpipe
 
 ### 3. 実行例
 ```bash
-printf "1+2\n3*4\nsqrt(9)\npi*2\n" | ./calcpipe
-```
+$ printf "1+2\n3*4\nsqrt(9)\npi*2\n" | ./calcpipe
 
-出力：
-```bash
+出力例：
+
 3
 12
 3.0
@@ -50,7 +49,7 @@ printf "1+2\n3*4\nsqrt(9)\npi*2\n" | ./calcpipe
 
 ### エラー例：
 ```bash
-printf "1+2\nabc\n3+4\n" | ./calcpipe
+$ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 [error] line 2: abc (Syntax error)
 ```
@@ -114,11 +113,11 @@ printf "1+2\nabc\n3+4\n" | ./calcpipe
 
 ### 3. テスト成功・失敗の判定
 * すべてのテストが成功した場合  
-    終了コード`0`を返します
+      終了コード`0`を返します
 
 * いずれかのテストに失敗した場合  
-    終了コード`0`以外になります  
-    失敗したテスト内容が表示されます
+      終了コード`0`以外になります  
+        失敗したテスト内容が表示されます
 
 例：
 ```text
