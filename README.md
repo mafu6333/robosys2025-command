@@ -32,7 +32,7 @@ $ chmod +x calcpipe
 
 ### 2. 実行
 ```bash
-echo "1+2" | ./calcpipe
+$ echo "1+2" | ./calcpipe
 ```
 
 ### 3. 実行例
