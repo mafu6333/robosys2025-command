@@ -29,6 +29,7 @@ $ git clone https://github.com/mafu6333/robosys2025_command.git
 $ cd calcpipe
 $ chmod +x calcpipe
 ```git ls-files | egrep '^(build|install|log)/' || echo "OK: build/install/log are not tracked"
+```
 
 ### 2. 実行
 ```bash
